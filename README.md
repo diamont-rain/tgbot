@@ -58,6 +58,7 @@ This Telegram bot is built using the `python-telegram-bot` library *`version 21.
 
 **Preparation 📦**
 ---
+- Recommended python version 3.11
 - Download & Rename `sample_config.env` to `config.env` then fillup `config.env` file value's
 
     **⚠️ Note:** _Don't share or upload the `config.env` any public place or repository_

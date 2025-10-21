@@ -7,7 +7,7 @@ from telegram.ext import ContextTypes
 from telegram.constants import FileSizeLimit
 
 from bot import logger
-from bot.modules.utils import Utils
+from bot.modules.utils import UTILITY
 
 async def func_unzip(update: Update, context: ContextTypes.DEFAULT_TYPE):
     effective_message = update.effective_message
@@ -37,7 +37,7 @@ async def func_unzip(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Unzipping
     await sent_message.edit_text("Unziping...")
-    response = Utils.unzipFile(zipFile, password)
+    response = UTILITY.unzipFile(zipFile, password)
     if not isinstance(response, list):
         await sent_message.edit_text(f"Error: {response}")
         return
@@ -49,7 +49,7 @@ async def func_unzip(update: Update, context: ContextTypes.DEFAULT_TYPE):
     for i in response:
         counter += 1
         try:
-            percentBar = Utils.createProgressBar(counter * 100/len(response))
+            percentBar = UTILITY.createProgressBar(counter * 100/len(response))
             await sent_message.edit_text((
                 "Uploading...\n"
                 f"File: <code>{i}</code>\n"

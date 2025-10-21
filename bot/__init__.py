@@ -6,8 +6,11 @@ from telegram import Bot, __version__ as __ptbversion__
 from .utils.config import CONFIG
 from .utils.logger import setup_logging
 
+# Version Tracker
+version_tracker = json.load(open("version.json", "rb"))
+__version__ = version_tracker["__version__"] # major.minor.patch.commits
+__versionStatus__ = version_tracker["__status__"] # Stable / Beta
 # constants
-__version__ = json.load(open("version.json", "rb"))["__version__"] # major.minor.patch.commits
 CONFIG_FILE = "config.env"
 COMMANDS_FILE_PATH = "bot/handlers/commands.json"
 REQUIRED_DIRS = ["downloads", "sys"]
@@ -15,6 +18,7 @@ ORIGINAL_BOT_USERNAME = "MissCiri_bot"
 ORIGINAL_BOT_ID = 6845693976
 DEFAULT_ERROR_CHANNEL_ID = -1002675104487
 BOT_UPTIME = time()
+PSNDL_WEBSITE_URL = "https://bishalqx980.github.io/psndl/"
 PSNDL_DATABASE_URL = "https://psndl.pages.dev/database.json"
 TL_LANG_CODES_URL = "https://telegra.ph/Language-Code-12-24"
 TTS_LANG_CODES_URL = "https://telegra.ph/Text-to-speech---language-codes-tts-01-23"
@@ -49,7 +53,7 @@ Developed by
  \ \_____\  \ \_\  \/\_____\  \ \_\ \_\  \ \_\ \_\  \ \_____\ 
   \/_____/   \/_/   \/_____/   \/_/\/_/   \/_/\/_/   \/_____/ 
    
-    Version: {__version__}
+    Version ({__versionStatus__}): {__version__}
     Library: python-telegram-bot {__ptbversion__}
     GitHub: https://github.com/bishalqx980
 """)

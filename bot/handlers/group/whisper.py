@@ -3,7 +3,7 @@ from telegram.ext import ContextTypes
 
 from bot.utils.decorators.pm_error import pm_error
 from bot.utils.database import DBConstants, MemoryDB, MongoDB, database_search
-from bot.modules.utils import Utils
+from bot.modules.utils import UTILITY
 from bot.helpers import BuildKeyboard
 
 @pm_error
@@ -60,7 +60,7 @@ async def func_whisper(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
     
     whispers = chat_data.get("whispers") or {}
-    whisper_key = Utils.randomString()
+    whisper_key = UTILITY.randomString()
 
     whispers.update({
         whisper_key: {

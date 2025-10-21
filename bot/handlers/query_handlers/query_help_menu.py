@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from telegram import Update
 from telegram.ext import ContextTypes
 from telegram.error import BadRequest
-from bot import __version__, BOT_UPTIME, logger
+from bot import __version__, __versionStatus__, BOT_UPTIME, logger
 from bot.helpers import BuildKeyboard
 from bot.utils.database import DBConstants, MongoDB
 from ..core.help import HelpMenuData
@@ -141,6 +141,62 @@ async def query_help_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif query_data == "botinfo":
         await query.answer("Getting information...")
 
+        # System Uptime Calculating
+        sys_uptime = timedelta(seconds=time() - psutil.boot_time())
+
+        sys_days = sys_uptime.days
+        sys_hours, remainder = divmod(sys_uptime.seconds, 3600)
+        sys_minute = remainder / 60
+
+        # Bot Uptime Calculating
+        bot_uptime = timedelta(seconds=time() - BOT_UPTIME)
+        
+        bot_days = bot_uptime.days
+        bot_hours, remainder = divmod(bot_uptime.seconds, 3600)
+        bot_minute = remainder / 60
+
+        text = (
+            "<blockquote><code><b>» bot.info()</b></code></blockquote>\n\n"
+
+            f"<b>• Name:</b> {context.bot.first_name}\n"
+            f"<b>• ID:</b> <code>{context.bot.id}</code>\n"
+            f"<b>• Username:</b> {context.bot.name}\n\n"
+
+            "<b>• Registered users:</b> <code>{t_users_count}</code>\n"
+            "<b>• Active users:</b> <code>{active_users}</code>\n"
+            "<b>• Inactive users:</b> <code>{inactive_users}</code>\n"
+            "<b>• Total chats:</b> <code>{t_chats_count}</code>\n\n"
+
+            f"<b>• System uptime:</b> <code>{int(sys_days)}d {int(sys_hours)}h {int(sys_minute)}m</code>\n"
+            f"<b>• Bot uptime:</b> <code>{int(bot_days)}d {int(bot_hours)}h {int(bot_minute)}m</code>\n"
+            f"<b>• Version ({__versionStatus__}):</b> <code>{__version__}</code>"
+        )
+
+        # text without db info
+        text_without_dbinfo = text.format(
+            t_users_count = "loading...",
+            active_users = "loading...",
+            inactive_users = "loading...",
+            t_chats_count = "loading..."
+        )
+
+        btn_data = [
+            {"Source code": "https://github.com/bishalqx980/tgbot", "Report bug": "https://github.com/bishalqx980/tgbot/issues"},
+            {"Developer": "https://t.me/bishalqx680/22"},
+            {"Back": "help_menu_menu", "Close": "misc_close"}
+        ]
+
+        btn = BuildKeyboard.cbutton(btn_data)
+
+        # sending response without db info (more efficient?)
+        try:
+            await query.edit_message_caption(text_without_dbinfo, reply_markup=btn)
+        except BadRequest:
+            await query.edit_message_text(text_without_dbinfo, reply_markup=btn)
+        except Exception as e:
+            logger.error(e)
+        
+        # loading database info
         database_info = MongoDB.info()
 
         i_users_data = database_info.get(DBConstants.USERS_DATA)
@@ -153,42 +209,13 @@ async def query_help_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         active_users = active_status.count(True)
         inactive_users = active_status.count(False)
 
-        sys_uptime = timedelta(seconds=datetime.now().timestamp() - psutil.boot_time())
-
-        sys_days = sys_uptime.days
-        sys_hours, remainder = divmod(sys_uptime.seconds, 3600)
-        sys_minute = remainder / 60
-
-        bot_uptime = timedelta(seconds=time() - BOT_UPTIME)
-
-        bot_days = bot_uptime.days
-        bot_hours, remainder = divmod(bot_uptime.seconds, 3600)
-        bot_minute = remainder / 60
-
-        text = (
-            "<blockquote><code><b>» bot.info()</b></code></blockquote>\n\n"
-
-            f"<b>• Name:</b> {context.bot.first_name}\n"
-            f"<b>• ID:</b> <code>{context.bot.id}</code>\n"
-            f"<b>• Username:</b> {context.bot.name}\n\n"
-
-            f"<b>• Registered users:</b> <code>{t_users_count}</code>\n"
-            f"<b>• Active users:</b> <code>{active_users}</code>\n"
-            f"<b>• Inactive users:</b> <code>{inactive_users}</code>\n"
-            f"<b>• Total chats:</b> <code>{t_chats_count}</code>\n\n"
-
-            f"<b>• System uptime:</b> <code>{int(sys_days)}d {int(sys_hours)}h {int(sys_minute)}m</code>\n"
-            f"<b>• Bot uptime:</b> <code>{int(bot_days)}d {int(bot_hours)}h {int(bot_minute)}m</code>\n"
-            f"<b>• Version (stable):</b> <code>{__version__}</code>"
+        # final formatting with db info
+        text = text.format(
+            t_users_count = t_users_count,
+            active_users = active_users,
+            inactive_users = inactive_users,
+            t_chats_count = t_chats_count
         )
-
-        btn_data = [
-            {"Source code": "https://github.com/bishalqx980/tgbot", "Report bug": "https://github.com/bishalqx980/tgbot/issues"},
-            {"Developer": "https://t.me/bishalqx680/22"},
-            {"Back": "help_menu_menu", "Close": "misc_close"}
-        ]
-        
-        btn = BuildKeyboard.cbutton(btn_data)
     
     # global reply
     try:

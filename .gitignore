@@ -7,9 +7,9 @@
 *.json
 venv
 config.env
-/downloads
-/temp
-/sys
+downloads
+temp
+sys
 
 # Exception 
 !requirements.txt

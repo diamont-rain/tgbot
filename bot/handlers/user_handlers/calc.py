@@ -1,6 +1,6 @@
 from telegram import Update
 from telegram.ext import ContextTypes
-from bot.modules.utils import Utils
+from bot.modules.utils import UTILITY
 
 async def func_calc(update: Update, context: ContextTypes.DEFAULT_TYPE):
     effective_message = update.effective_message
@@ -11,5 +11,5 @@ async def func_calc(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await effective_message.reply_text("Use <code>/calc math</code>\nor reply the math with <code>/calc</code> command.\nE.g. <code>/calc (980 - 80) + 100 / 4 * 4 - 20</code>")
         return
     
-    res, output = Utils.calculator(text)
+    res, output = UTILITY.calculator(text)
     await effective_message.reply_text(f"Calculation: <code>{output}</code>" if res else f"Error: {output.msg}")

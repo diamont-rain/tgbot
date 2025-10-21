@@ -8,7 +8,7 @@ from telegram.constants import ChatType
 from bot import logger
 from bot.helpers import BuildKeyboard
 from bot.utils.database import DBConstants, MemoryDB
-from bot.modules.utils import Utils
+from bot.modules.utils import UTILITY
 
 def inlineQueryMaker(title, message, reply_markup=None, description=None):
     """
@@ -105,7 +105,7 @@ async def inline_query_handler(update: Update, context: ContextTypes.DEFAULT_TYP
         if process_whisper:
             data_center = MemoryDB.data_center.get("whisper_data") or {}
             whispers = data_center.get("whispers") or {}
-            whisper_key = Utils.randomString()
+            whisper_key = UTILITY.randomString()
 
             whispers.update({
                 whisper_key: {

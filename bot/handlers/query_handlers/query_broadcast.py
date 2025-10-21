@@ -5,7 +5,7 @@ from telegram import Update
 from telegram.ext import ContextTypes
 from telegram.error import BadRequest, Forbidden
 from bot.utils.database import DBConstants, MemoryDB, MongoDB
-from bot.modules.utils import Utils
+from bot.modules.utils import UTILITY
 from bot.helpers import BuildKeyboard
 
 async def query_broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -158,7 +158,7 @@ async def query_broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     pass
             
             progress = (sent_count + exception_count) * 100 / len(active_users)
-            progressBar = Utils.createProgressBar(progress)
+            progressBar = UTILITY.createProgressBar(progress)
 
             updateText = broadcastUpdateText.format(
                 len(users_id),

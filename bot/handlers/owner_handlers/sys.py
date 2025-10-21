@@ -1,27 +1,27 @@
 import psutil
-import aiohttp
 from time import time
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 from telegram import Update
 from telegram.ext import ContextTypes
 
 from bot import BOT_UPTIME
 from bot.utils.database import MemoryDB
-from bot.modules.utils import Utils
+from bot.modules.utils import UTILITY
 from bot.utils.decorators.sudo_users import require_sudo
 
 @require_sudo
 async def func_sys(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    sent_message = await update.effective_message.reply_text("⌛")
-    
-    # Uptime Calculating
-    sys_uptime = timedelta(seconds=datetime.now().timestamp() - psutil.boot_time())
+    effective_message = update.effective_message
+
+    # Systen Uptime Calculating
+    sys_uptime = timedelta(seconds=time() - psutil.boot_time())
 
     sys_days = sys_uptime.days
     sys_hours, remainder = divmod(sys_uptime.seconds, 3600)
     sys_minute = remainder / 60
 
+    # Bot Uptime Calculating
     bot_uptime = timedelta(seconds=time() - BOT_UPTIME)
     
     bot_days = bot_uptime.days
@@ -34,20 +34,9 @@ async def func_sys(update: Update, context: ContextTypes.DEFAULT_TYPE):
     diskUsagePercent = psutil.disk_usage('/')[3]
 
     # percent vizualize
-    ramBar = Utils.createProgressBar(ramPercent)
-    swapRamBar = Utils.createProgressBar(swapRamPercent)
-    diskUsageBar = Utils.createProgressBar(diskUsagePercent)
-
-    # pinging server
-    server_url = MemoryDB.bot_data.get("server_url")
-    server_ping = "~ infinite ~" # pre-determined
-    if server_url:
-        if not server_url.startswith("http"):
-            server_url = f"http://{server_url}"
-        
-        server_ping = await Utils.pingServer(server_url)
-    # Telegram Server Ping Check
-    tg_server_ping = await Utils.pingServer("http://api.telegram.org/")
+    ramBar = UTILITY.createProgressBar(ramPercent)
+    swapRamBar = UTILITY.createProgressBar(swapRamPercent)
+    diskUsageBar = UTILITY.createProgressBar(diskUsagePercent)
     
     sys_info = (
         "<blockquote><b>🖥️ System information</b></blockquote>\n\n"
@@ -86,8 +75,29 @@ async def func_sys(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"<b>└ Bot uptime:</b> <code>{int(bot_days)}d {int(bot_hours)}h {int(bot_minute)}m</code>\n\n"
 
         "<b>🌐 Server</b>\n"
-        f"<b>├ Ping:</b> <code>{server_ping}</code>\n"
-        f"<b>└ Telegram:</b> <code>{tg_server_ping}</code>"
+        "<b>├ Ping:</b> <code>{server_ping}</code>\n"
+        "<b>└ Telegram:</b> <code>{tg_server_ping}</code>"
     )
 
-    await sent_message.edit_text(sys_info)
+    # sending sys info without ping (no need to wait for ping response)
+    sent_message = await effective_message.reply_text(sys_info.format(
+        server_ping = "loading...",
+        tg_server_ping = "loading..."
+    ))
+
+    # pinging server
+    server_url = MemoryDB.bot_data.get("server_url")
+    server_ping = "~ infinite ~" # pre-determined
+    if server_url:
+        if not server_url.startswith("http"):
+            server_url = f"http://{server_url}"
+        
+        server_ping = await UTILITY.pingServer(server_url)
+    # Telegram Server Ping Check
+    tg_server_ping = await UTILITY.pingServer("http://api.telegram.org/")
+
+    # editing sys info after getting ping info
+    await sent_message.edit_text(sys_info.format(
+        server_ping = server_ping,
+        tg_server_ping = tg_server_ping
+    ))
