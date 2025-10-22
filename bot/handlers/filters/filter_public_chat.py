@@ -10,6 +10,7 @@ from .auto_linkblocker import autoLinkBlocker
 from .auto_translate import autoTranslate
 from .auto_triggers import autoTriggers
 
+
 async def filter_public_chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.effective_chat
     user = update.effective_user

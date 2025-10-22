@@ -4,6 +4,7 @@ from telegram.ext import ContextTypes
 from bot import config
 from bot.utils.database import MemoryDB
 
+
 def require_sudo(func):
     """
     :returns list: list of sudo's including **owner_id**

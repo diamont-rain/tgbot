@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 from typing import Optional
 
+
 class CONFIG:
     def __init__(self):
         """Initialize with None values"""

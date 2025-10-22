@@ -2,6 +2,7 @@ import aiohttp
 from bot import logger
 from bot.utils.database import MemoryDB
 
+
 async def weather_info(location):
     weather_api = MemoryDB.bot_data.get("weather_api")
     if not weather_api:

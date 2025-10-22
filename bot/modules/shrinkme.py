@@ -2,6 +2,7 @@ import aiohttp
 from bot import logger
 from bot.utils.database import MemoryDB
 
+
 async def shortener_url(url):
     shrinkme_api = MemoryDB.bot_data.get("shrinkme_api")
     if not shrinkme_api:

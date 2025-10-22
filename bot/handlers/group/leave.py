@@ -6,6 +6,7 @@ from bot.utils.decorators.pm_error import pm_error
 from bot.helpers import BuildKeyboard
 from .auxiliary.anonymous_admin import anonymousAdmin
 
+
 @pm_error
 async def func_leave(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.effective_chat

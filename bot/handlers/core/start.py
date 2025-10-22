@@ -7,6 +7,7 @@ from bot import ORIGINAL_BOT_USERNAME, ORIGINAL_BOT_ID, logger
 from bot.helpers import BuildKeyboard
 from bot.utils.database import MemoryDB, database_add_user
 
+
 async def func_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
     chat = update.effective_chat

@@ -1,5 +1,6 @@
 from telegram import Chat, ChatMember
 
+
 class ChatAdmins:
     def __init__(self):
         self.is_user_admin = None

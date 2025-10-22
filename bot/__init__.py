@@ -6,6 +6,7 @@ from telegram import Bot, __version__ as __ptbversion__
 from .utils.config import CONFIG
 from .utils.logger import setup_logging
 
+
 # Version Tracker
 version_tracker = json.load(open("version.json", "rb"))
 __version__ = version_tracker["__version__"] # major.minor.patch.commits

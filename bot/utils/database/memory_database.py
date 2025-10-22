@@ -1,5 +1,6 @@
 from bot import logger
 
+
 class MemoryDatabase:
     def __init__(self):
         self.bot_data = {}

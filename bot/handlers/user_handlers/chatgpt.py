@@ -1,7 +1,10 @@
 from time import time
+
 from telegram import Update
 from telegram.ext import ContextTypes
+
 from bot.modules import llm
+
 
 async def func_gpt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user

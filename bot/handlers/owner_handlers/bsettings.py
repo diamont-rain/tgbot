@@ -10,6 +10,7 @@ from bot.utils.database import DBConstants, MemoryDB
 from bot.utils.decorators.sudo_users import require_sudo
 from bot.utils.decorators.pm_only import pm_only
 
+
 class BotSettingsData:
     TEXT = (
         "<blockquote><b>Bot Settings</b></blockquote>\n\n"
@@ -30,6 +31,7 @@ class BotSettingsData:
         {"OMDB API": "bsettings_omdb_api", "Weather API": "bsettings_weather_api"},
         {"> ⁅ Database ⁆": "bsettings_database", "Close": "misc_close"}
     ]
+
 
 @pm_only
 @require_sudo

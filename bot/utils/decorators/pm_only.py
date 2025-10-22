@@ -4,6 +4,7 @@ from telegram import Update
 from telegram.ext import ContextTypes
 from telegram.constants import ChatType
 
+
 def pm_only(func):
     @wraps(func)
     async def wraper(update: Update, context: ContextTypes.DEFAULT_TYPE):

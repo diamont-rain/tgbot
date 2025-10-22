@@ -4,6 +4,7 @@ from telegram.ext import ContextTypes
 from bot.utils.database import DBConstants, database_search
 from bot.utils.decorators.pm_error import pm_error
 
+
 @pm_error
 async def func_filters(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.effective_chat

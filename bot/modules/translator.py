@@ -1,6 +1,7 @@
 from deep_translator import GoogleTranslator
 from bot import logger
 
+
 def fetch_lang_codes():
     """:returns list: Example: [en, bn, ir, fr ...]"""
     langList = GoogleTranslator().get_supported_languages(as_dict=True)

@@ -4,6 +4,7 @@ from telegram.ext import ContextTypes
 from bot.utils.decorators.pm_error import pm_error
 from .auxiliary.chat_admins import ChatAdmins
 
+
 @pm_error
 async def func_kickme(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.effective_chat

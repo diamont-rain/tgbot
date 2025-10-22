@@ -1,7 +1,10 @@
 from time import time
+
 from telegram import Update
 from telegram.ext import ContextTypes
+
 from bot.modules.qr import QR
+
 
 async def func_genqr(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user

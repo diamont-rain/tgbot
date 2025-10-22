@@ -2,6 +2,7 @@ from telegram import Update
 from telegram.ext import ContextTypes
 from bot.utils.database import DBConstants, database_search
 
+
 async def join_request_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     join_request_update = update.chat_join_request
     chat = join_request_update.chat

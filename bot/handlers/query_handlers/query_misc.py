@@ -4,6 +4,7 @@ from telegram.ext import ContextTypes
 from bot.helpers import BuildKeyboard
 from bot.utils.database import DBConstants, MemoryDB, MongoDB, database_search
 
+
 async def query_misc(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.effective_chat
     user = update.effective_user

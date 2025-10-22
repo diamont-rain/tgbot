@@ -10,6 +10,7 @@ from bot.helpers import BuildKeyboard
 from bot.utils.database import DBConstants, MemoryDB
 from bot.modules.utils import UTILITY
 
+
 def inlineQueryMaker(title, message, reply_markup=None, description=None):
     """
     :param description: Type `same` if you want to keep the description same as message!

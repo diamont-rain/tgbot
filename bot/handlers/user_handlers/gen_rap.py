@@ -4,6 +4,7 @@ from telegram.ext import ContextTypes
 from bot import PSNDL_WEBSITE_URL
 # from bot.modules.psndl_module import PSNDL
 
+
 async def func_rap(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.effective_message.reply_text(
         f"This command has been disabled! Please use /psndl or our website: {PSNDL_WEBSITE_URL}"

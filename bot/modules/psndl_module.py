@@ -2,6 +2,7 @@ import aiohttp
 from io import BytesIO
 from bot import logger, PSNDL_DATABASE_URL
 
+
 class PSNDL:
     async def fetch_database():
         try:

@@ -1,5 +1,6 @@
 from telegram import Message, User, Chat
 
+
 async def autoTriggers(message: Message, user: User, chat: Chat, filters: dict):
     """
     :param message: `update.effective_message`

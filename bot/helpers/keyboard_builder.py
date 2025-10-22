@@ -1,6 +1,7 @@
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 from bot import logger
 
+
 class KeyboardBuilder:
     def __init__(self):
         self.keyboard = []

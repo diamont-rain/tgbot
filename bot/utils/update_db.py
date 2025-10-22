@@ -1,6 +1,7 @@
 from bot import CONFIG_FILE, logger, config
 from .database import DBConstants, MemoryDB, MongoDB
 
+
 def update_database():
     bot_data = MongoDB.find(DBConstants.BOT_DATA, "_id")
     if bot_data:

@@ -5,6 +5,7 @@ from bot.utils.decorators.pm_error import pm_error
 from .auxiliary.chat_admins import ChatAdmins
 from .auxiliary.anonymous_admin import anonymousAdmin
 
+
 @pm_error
 async def func_unban(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.effective_chat

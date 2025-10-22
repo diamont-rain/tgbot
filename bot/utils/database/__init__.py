@@ -1,6 +1,7 @@
 from .memory_database import MemoryDatabase
 from .mongodb import MongoDatabase
 
+
 # Database Constants
 class DBConstants:
     BOT_DATA = "bot_data"

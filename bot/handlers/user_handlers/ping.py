@@ -1,7 +1,9 @@
 import aiohttp
 from time import time
+
 from telegram import Update
 from telegram.ext import ContextTypes
+
 
 async def func_ping(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.effective_chat

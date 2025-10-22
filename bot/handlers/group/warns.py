@@ -5,6 +5,7 @@ from bot.utils.decorators.pm_error import pm_error
 from bot.utils.database import DBConstants, database_search
 from .auxiliary.chat_admins import ChatAdmins
 
+
 @pm_error
 async def func_warns(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.effective_chat

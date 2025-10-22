@@ -1,5 +1,6 @@
 import re
 
+
 class RE_LINK:
     @staticmethod
     def detectLinks(text):

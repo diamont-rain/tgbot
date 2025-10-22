@@ -3,6 +3,7 @@ from bot import TL_LANG_CODES_URL
 from bot.helpers import BuildKeyboard
 from bot.modules.translator import translate
 
+
 async def autoTranslate(message: Message, user: User, lang_code: str):
     """
     :param message: `update.effective_message`

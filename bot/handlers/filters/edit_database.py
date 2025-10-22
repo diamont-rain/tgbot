@@ -1,5 +1,6 @@
 from bot.utils.database import DBConstants, MemoryDB
 
+
 def edit_database(chat_id, user_id, message):
     """
     Gets `update_data_value` from Edit Value query action & retuns `True` if is_editing.\n

@@ -7,6 +7,7 @@ from bot.helpers import BuildKeyboard
 from bot.utils.database import DBConstants, database_search
 from bot.modules.translator import fetch_lang_codes, translate
 
+
 async def func_tr(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.effective_chat
     user = update.effective_user

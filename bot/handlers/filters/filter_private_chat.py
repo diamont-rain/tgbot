@@ -9,6 +9,7 @@ from bot.utils.database import DBConstants, database_search
 from .edit_database import edit_database
 from .auto_translate import autoTranslate
 
+
 async def filter_private_chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.effective_chat
     user = update.effective_user

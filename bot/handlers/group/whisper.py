@@ -6,6 +6,7 @@ from bot.utils.database import DBConstants, MemoryDB, MongoDB, database_search
 from bot.modules.utils import UTILITY
 from bot.helpers import BuildKeyboard
 
+
 @pm_error
 async def func_whisper(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user

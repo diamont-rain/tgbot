@@ -1,13 +1,16 @@
 import json
 from io import BytesIO
+
 from telegram import Update
 from telegram.ext import ContextTypes
 from telegram.error import BadRequest
+
 from bot import logger
 from bot.utils.update_db import update_database
 from bot.helpers import BuildKeyboard
 from bot.utils.database import DBConstants, MemoryDB, MongoDB
 from ..owner_handlers.bsettings import BotSettingsData
+
 
 async def query_bot_settings(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user

@@ -5,6 +5,7 @@ from telegram.constants import ChatType
 from telegram.helpers import create_deep_linked_url
 from bot.helpers import BuildKeyboard
 
+
 def pm_error(func):
     @wraps(func)
     async def wraper(update: Update, context: ContextTypes.DEFAULT_TYPE):

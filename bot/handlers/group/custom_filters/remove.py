@@ -6,6 +6,7 @@ from bot.utils.database import DBConstants, MemoryDB, MongoDB, database_search
 from ..auxiliary.chat_admins import ChatAdmins
 from ..auxiliary.anonymous_admin import anonymousAdmin
 
+
 @pm_error
 async def func_remove(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.effective_chat

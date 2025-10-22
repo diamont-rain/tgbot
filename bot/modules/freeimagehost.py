@@ -1,6 +1,7 @@
 import aiohttp
 from bot import logger
 
+
 async def upload_image(image_path):
     """
     returns `json` response

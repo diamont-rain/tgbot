@@ -1,6 +1,8 @@
 from telegram import Update
 from telegram.ext import ContextTypes
+
 from bot.modules.weather import weather_info
+
 
 async def func_weather(update: Update, context: ContextTypes.DEFAULT_TYPE):
     effective_message = update.effective_message

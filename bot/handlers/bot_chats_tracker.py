@@ -1,7 +1,9 @@
 from telegram import Update, ChatMember
 from telegram.ext import ContextTypes
 from telegram.constants import ChatType
+
 from bot.utils.database import DBConstants, MemoryDB, MongoDB
+
 
 async def bot_chats_tracker(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """

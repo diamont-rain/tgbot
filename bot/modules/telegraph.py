@@ -2,6 +2,7 @@ from aiohttp import ClientSession
 from telegraph.aio import Telegraph
 from bot import ORIGINAL_BOT_USERNAME, logger
 
+
 class TELEGRAPH:
     def __init__(self):
         self.telegraph = None

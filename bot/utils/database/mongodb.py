@@ -1,6 +1,7 @@
 from pymongo import MongoClient
 from bot import logger, config
 
+
 class MongoDatabase:
     def __init__(self):
         self.client = MongoClient(config.mongodb_uri) # full cluster access

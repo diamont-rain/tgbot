@@ -5,6 +5,7 @@ from bot.utils.database import DBConstants, MemoryDB, database_search
 from .auxiliary.chat_admins import ChatAdmins
 from .auxiliary.anonymous_admin import anonymousAdmin
 
+
 class GroupChatSettingsData:
     TEXT = (
         "<blockquote><b>Chat Settings</b></blockquote>\n\n"

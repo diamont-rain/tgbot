@@ -7,6 +7,7 @@ from bot import PSNDL_WEBSITE_URL
 # from bot.modules.psndl_module import PSNDL
 # from bot.modules import telegraph
 
+
 async def func_psndl(update: Update, context: ContextTypes.DEFAULT_TYPE):
     effective_message = update.effective_message
     game_name = " ".join(context.args)

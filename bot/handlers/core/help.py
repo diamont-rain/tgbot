@@ -8,6 +8,7 @@ from bot import logger
 from bot.helpers import BuildKeyboard
 from bot.utils.database import MemoryDB, database_add_user
 
+
 class HelpMenuData:
     TEXT = (
         "<blockquote><b>Help Menu</b></blockquote>\n\n"

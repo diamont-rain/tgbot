@@ -4,6 +4,7 @@ from pyzbar.pyzbar import decode
 from PIL import Image
 from bot import logger
 
+
 class QR:
     @staticmethod
     def generate_qr(data, size=50):

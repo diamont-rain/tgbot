@@ -5,8 +5,10 @@ from bot import logger, config
 from bot.utils.decorators.pm_only import pm_only
 from bot.helpers import BuildKeyboard
 
+
 class SUPPORT_STATES:
     STATE_ONE = range(1)
+
 
 @pm_only
 async def init_support_conv(update: Update, context: ContextTypes.DEFAULT_TYPE):

@@ -2,6 +2,7 @@ import aiohttp
 from io import BytesIO
 from bot import logger
 
+
 class LLM:
     def __init__(self):
         self.text_gen_model = "http://ai-llm.server0x01.workers.dev/"

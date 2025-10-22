@@ -10,6 +10,7 @@ from bot.utils.database import MemoryDB
 from bot.modules.utils import UTILITY
 from bot.utils.decorators.sudo_users import require_sudo
 
+
 @require_sudo
 async def func_sys(update: Update, context: ContextTypes.DEFAULT_TYPE):
     effective_message = update.effective_message
